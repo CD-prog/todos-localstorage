@@ -11,6 +11,26 @@ function renderTodos() {
     for (var i=0; i<todos.length; i++){
         var li = document.createElement('li');
         li.innerText = todos[i];
+        li.setAttribute("data-index", i);
+
+        var button = document.createElement("button");
+        button.innerText = "Complete";
+        li.appendChild(button);
+        button.addEventListener('click', function(event) {
+            var todoIndex = parseInt(event.target.parentElement.getAttribute('data-index'));
+            todos.splice(todoIndex, 1);
+            renderTodos();
+
+        });
+
+
+
+
+
+
+
+
+
         todoList.appendChild(li);
     }
 };
@@ -29,5 +49,18 @@ todoForm.addEventListener('submit', function (event){
 
     todoInput.value = "";
     renderTodos()
-
 });
+
+
+
+// * Modify your `renderTodos()` function:
+
+//   * When a new todo is created, add a `data-index` for each `li`.
+
+//   * Generate a button that says "Complete" and append it to your `li`.
+
+// * Add an event listener so that when a user clicks the Complete button, it accesses the `data-index` value and removes that todo element from the list.
+
+// ## Hint
+
+// * You can use `setAttribute` for `data-index` and `splice` to remove your todo from the list.
